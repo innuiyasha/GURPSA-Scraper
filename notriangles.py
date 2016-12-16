@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
 import sys
 import re
 
@@ -7,7 +10,9 @@ with open(sys.argv[1]) as f:
 	book = f.readlines()
 	something = ""
 	
-	target = open("target.txt", 'w')
+	output = re.sub(".html", ".txt", sys.argv[1])
+
+	target = open(output, 'w')
 	target.truncate()
 
 	for lines in book:

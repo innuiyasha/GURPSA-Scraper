@@ -1,0 +1,57 @@
+Nictitating Membrane				// Name
+31						// Traits
+1 point/level					// Cost
+You have a transparent lens over		// Multi-line description ( Could extend to next page )
+
+
+Night Vision 3					// Name Traits
+1 point/level					// Cost
+Your eyes adapt rapidly to dark-		// Multi-line description ( Could extend to next page )
+
+
+Mindlink 25
+Variable
+You have a permanent telepathic
+
+
+Arm ST 31					// Name Traits
+3, 5, or 8 points per +1 ST			// Cost
+Some of your arms have extra ST
+
+
+Artificer					// Name
+see Talent, p. 89				// Reference
+
+
+Pitiable
+see p. 22					// Reference
+
+
+Binding 31
+2 points/level
+You have an attack that can hold
+
+
+Arm DX 31
+12 or 16 points per +1 DX
+Some of your arms have extra DX
+
+
+G-Experience 2
+1 to 10 points
+You have experience working in
+
+
+Magery 25
+5 points for Magery 0, +10			// Cost
+points/level					// Cost overflow
+You are magically adept. This
+
+
+Shapeshifting 31
+Variable
+You can physically change into one
+. . . 
+Alternate Form					// Subskill
+Variable					// Subskill cost
+Like the werewolf of folklore, you

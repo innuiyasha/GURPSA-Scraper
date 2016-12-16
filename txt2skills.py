@@ -82,7 +82,7 @@ for content in page:
 print("Writing to file...")
 
 
-target = open("output.txt", 'w')
+target = open("skills.txt", 'w')
 target.truncate()
 
 
