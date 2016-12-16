@@ -1,3 +1,5 @@
-To run the scrapper run:
+The scrapper uses the html5 file generated from "www.zamzar.com/convert/pdf-to-txt/"
 
-txt2skills.py <filename>
+Then run "python notriangles.py <filename>" on that html file
+
+Then use either "<advantageExtractor.py | skillExtractor.py> <filename>"
