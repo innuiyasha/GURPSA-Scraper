@@ -61,9 +61,8 @@ ver to use; you cannot switch it on
 continuously without a special
 enhancement.
 Exceptions to these guidelines are
-noted explicitly.
-34 ADVANTAGES
-ADVANTAGE LIST
+
+
 360° Vision 31
 25 points
 You have a 360° field of vision. You
