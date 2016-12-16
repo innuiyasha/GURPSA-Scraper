@@ -11,7 +11,7 @@ with open(sys.argv[1]) as f:
 	target.truncate()
 
 	for lines in book:
-		something = re.sub("(</div>)","\n",something)
+		something = re.sub("(</div>)","\n", lines)
 		something = re.sub("(<[a-zA-Z0-9\+\-/\(\)\.,_\":!?=\s{}\[\]']*>)","", something)
 		print(something)
 		target.write(something)
