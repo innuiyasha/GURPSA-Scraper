@@ -10,7 +10,7 @@ print("-----Starting .txt Extraction-----")
 with open(sys.argv[1]) as f:
 	book = f.readlines()
 
-	target = open("skills.xml", 'w')
+	target = open("Skills.xml", 'w')
 	target.truncate()
 	
 	print("Removing empty lines and page numbers")
@@ -23,10 +23,12 @@ with open(sys.argv[1]) as f:
 
 	print("Parsing for skills")
 	
+	target.write("<SKILLS>\n")
 	for linenum in range(len(book)):
 		if(re.match("(IQ|DX|Will|Per|HT)/[Very Easy|Easy|Average|Hard|Very Hard]", book[linenum]) and (not re.search("[;,]",book[linenum]))):
 			target.write("<skill>\n")
 			target.write("\t<name>\n\t\t" + re.sub("[0-9†\s](?![a-zA-Z])","", book[linenum - 1]) + "\n\t</name>\n\t\t")
+                        target.write("<attr>\n")
 			for char in book[linenum]:
 				if char == '/':
 					target.write("\n\t</attr>\n")
@@ -64,5 +66,6 @@ with open(sys.argv[1]) as f:
 			target.write("</skill>\n")
 
 
+	target.write("</SKILLS>\n")
 target.close()
 print("-----Done-----")

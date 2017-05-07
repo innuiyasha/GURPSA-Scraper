@@ -18,6 +18,6 @@ with open(sys.argv[1]) as f:
 	for lines in book:
 		something = re.sub("(</div>)","\n", lines)
 		something = re.sub("(<[a-zA-Z0-9\+\-/\(\)\.,_\":!?=\s{}\[\]']*>)","", something)
-		print(something)
 		target.write(something)
 	target.close()
+print("Finished .txt Extraction")
