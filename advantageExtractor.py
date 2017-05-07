@@ -23,45 +23,35 @@ with open(sys.argv[1]) as f:
 
 	print("Parsing for advantages")
 	target.write("<ADVANTAGES>\n")
-	for linenum in range(len(book)):
-		if(re.match("[0-9]+\s(point)", book[linenum]) and (not re.search("[;\.,]", book[linenum]))):
-			target.write("<advantage>\n")
-			
-			if(re.match("[a-zA-Z0-9°/]", book[linenum - 1]) and re.search("[a-zA-Z]", book[linenum - 1])):
-				target.write("\t<name>\n\t\t" + book[linenum - 1] + "\t</name>\n")
-			else:
-				target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 2]) + " " + re.sub("[\n\r\s]+", "", book[linenum - 1]) + "\n\t</name>\n")
-			
-			target.write("</advantage>\n")
-		elif(re.match("^[0-9]+(,\s+[0-9]+|\sto\s[0-9]+|\sor\s[0-9]+)+", book[linenum])):
-			target.write("<advantage>\n")
-			
-			if(not re.match("[0-9]", book[linenum - 1]) and re.search("[a-zA-Z]", book[linenum - 1])):
-				target.write("\t<name>\n\t\t" + book[linenum - 1] + "\t</name>\n")
-			else:
-				target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 2]) + " " + re.sub("[\n\r\s]+", "", book[linenum - 1]) + "\n\t</name>\n")
-			
-			target.write("</advantage>\n")
-		elif(re.match("Variable", book[linenum])):
-			target.write("<advantage>\n")
-			
-			if(re.match("[a-zA-Z0-9°]", book[linenum - 1]) and re.search("[a-zA-Z]", book[linenum - 1])):
-				target.write("\t<name>\n\t\t" + book[linenum - 1] + "\t</name>\n")
-			else:
-				target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 2]) + " " + re.sub("[\n\r\s]+", "", book[linenum - 1]) + "\n\t</name>\n")
-			
-			target.write("</advantage>\n")
-		elif(re.match("see.*p.\s+[0-9]+[\s\n\r]+", book[linenum])):
-                        target.write("<advantage>\n")
-			
-			if(re.match("[a-zA-Z0-9°]", book[linenum - 1])):
-				target.write("\t<name>\n\t\t" + book[linenum - 1] + "\t</name>\n")
-			else:
-				target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 2]) + " " + re.sub("[\n\r\s]+", "", book[linenum - 1]) + "\n\t</name>\n")
-			
-			target.write("</advantage>\n")
-			
+        target.write("<advantage><desc>\n")
+        linenum = 0
+        while linenum < len(book):
+       # for linenum in range(len(book)):
+                try:
+                        if((re.match("[0-9]+\s(point)", book[linenum + 1])
+                           and (not re.search("[;\.,]", book[linenum + 1])))
+                           or re.match("^[0-9]+(,\s+[0-9]+|\sto\s[0-9]+|\sor\s[0-9]+)+", book[linenum + 1])
+                           or re.match("Variable", book[linenum + 1])
+                           or re.match("see.*p.\s+[0-9]+[\s\n\r]+", book[linenum + 1])):
+                                
+                                target.write("\n</desc>\n</advantage>\n")
+                                target.write("<advantage>\n")
+                                if(re.match("[a-zA-Z0-9°/]", book[linenum]) and re.search("[a-zA-Z]", book[linenum])):
+                                        target.write("\t<name>\n\t\t" + book[linenum] + "\t</name>\n")
+                                else:
+                                        target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 1]) + " " + re.sub("[\n\r\s]+", "", book[linenum]) + "\n\t</name>\n")
+                                target.write("<stat>" + book[linenum + 1] + "</stat>")
+                                target.write("<desc>")
+                                linenum += 2
+                        else:
+                                target.write(book[linenum])
+                                linenum += 1
+                except IndexError:
+                        target.write("")
+                        linenum += 1
 
+			
+	target.write("</desc></advantage>\n")
 	target.write("</ADVANTAGES>\n")
 target.close()
 print("-----Done-----")
