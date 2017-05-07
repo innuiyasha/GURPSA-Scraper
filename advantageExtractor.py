@@ -36,10 +36,23 @@ with open(sys.argv[1]) as f:
                                 
                                 target.write("\n</desc>\n</advantage>\n")
                                 target.write("<advantage>\n")
-                                if(re.match("[a-zA-Z0-9°/]", book[linenum]) and re.search("[a-zA-Z]", book[linenum])):
-                                        target.write("\t<name>\n\t\t" + book[linenum] + "\t</name>\n")
+                                parts = book[linenum].split(" ")
+                                title = ""
+                                count = 0
+                                while count < len(parts) - 1:
+                                        title += parts[count] + " "
+                                        count += 1
+                                        
+                                
+                                if(re.match("([0-9]+/*)+", parts[len(parts) - 1])):
+                                        target.write("<name>" + book[linenum] + " | " + title + "</name>")
+                                        target.write("<nums>" + parts[len(parts) - 1] + "</nums>")
                                 else:
-                                        target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 1]) + " " + re.sub("[\n\r\s]+", "", book[linenum]) + "\n\t</name>\n")
+                                        if(re.match("[a-zA-Z0-9°/]", book[linenum]) and re.search("[a-zA-Z]", book[linenum])):
+                                                target.write("\t<name>\n\t\t" + book[linenum] + "\t</name>\n")
+                                        else:
+                                                target.write("\t<name>\n\t\t" + re.sub("[\n\r]", "", book[linenum - 1]) + " " + re.sub("[\n\r\s]+", "", book[linenum]) + "\n\t</name>\n")
+        
                                 target.write("<stat>" + book[linenum + 1] + "</stat>")
                                 target.write("<desc>")
                                 linenum += 2
