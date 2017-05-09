@@ -45,7 +45,7 @@ with open(sys.argv[1]) as f:
                                         
                                 
                                 if(re.match("([0-9]+/*)+", parts[len(parts) - 1])):
-                                        target.write("<name>" + book[linenum] + " | " + title + "</name>")
+                                        target.write("<name>" + title + "</name>")
                                         target.write("<nums>" + parts[len(parts) - 1] + "</nums>")
                                 else:
                                         if(re.match("[a-zA-Z0-9°/]", book[linenum]) and re.search("[a-zA-Z]", book[linenum])):
